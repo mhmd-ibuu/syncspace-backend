@@ -8,20 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*") // <--- NUCLEAR FIX: Allows ALL websites (Vercel, Localhost, etc.)
+// FIX: Change 'origins' to 'originPatterns' to fix the crash
+@CrossOrigin(originPatterns = "*", allowCredentials = "true")
 public class DocumentController {
 
     @Autowired
     private DocumentService service;
 
-    // --- FIX 1: THE HOME PAGE ---
-    // This stops the "Whitelabel Error" and proves the server is alive.
+    // This is the Home Page (stops the Whitelabel Error)
     @GetMapping("/")
     public String home() {
         return "SyncSpace Backend is LIVE and RUNNING! 🚀";
     }
-
-    // --- EXISTING FEATURES ---
 
     @GetMapping("/documents")
     public List<Document> getAllDocuments() {
