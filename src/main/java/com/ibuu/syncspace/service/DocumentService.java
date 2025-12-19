@@ -40,7 +40,6 @@ public class DocumentService {
     }
 
     public void deleteDocument(Long id) {
-        repo.deleteById(id);
-        // Note: If your repository variable is named 'repository', use that instead of 'repo'
+        repository.deleteById(id); // Changed 'repo' to 'repository'
     }
 }
