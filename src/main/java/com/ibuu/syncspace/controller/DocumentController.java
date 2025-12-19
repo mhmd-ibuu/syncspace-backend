@@ -3,37 +3,38 @@ package com.ibuu.syncspace.controller;
 import com.ibuu.syncspace.model.Document;
 import com.ibuu.syncspace.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/documents")
-@CrossOrigin(origins = "*") // Allow React to talk to this later
+@CrossOrigin(origins = "*") // <--- NUCLEAR FIX: Allows ALL websites (Vercel, Localhost, etc.)
 public class DocumentController {
 
     @Autowired
     private DocumentService service;
 
-    @PostMapping
-    public ResponseEntity<Document> createDocument(@RequestBody Document document) {
-        return ResponseEntity.ok(service.createDocument(document));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Document>> getAllDocuments() {
-        return ResponseEntity.ok(service.getAllDocuments());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Document> getDocument(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getDocumentById(id));
-    }
-
-    // Add this at the top of DocumentController
+    // --- FIX 1: THE HOME PAGE ---
+    // This stops the "Whitelabel Error" and proves the server is alive.
     @GetMapping("/")
     public String home() {
-        return "SyncSpace Backend is Running! 🚀";
+        return "SyncSpace Backend is LIVE and RUNNING! 🚀";
+    }
+
+    // --- EXISTING FEATURES ---
+
+    @GetMapping("/documents")
+    public List<Document> getAllDocuments() {
+        return service.getAllDocuments();
+    }
+
+    @GetMapping("/documents/{id}")
+    public Document getDocument(@PathVariable Long id) {
+        return service.getDocumentById(id);
+    }
+
+    @PostMapping("/documents")
+    public Document createDocument(@RequestBody Document document) {
+        return service.createDocument(document);
     }
 }
