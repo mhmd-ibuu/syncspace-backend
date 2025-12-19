@@ -38,4 +38,9 @@ public class DocumentService {
         return repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Document not found"));
     }
+
+    public void deleteDocument(Long id) {
+        repo.deleteById(id);
+        // Note: If your repository variable is named 'repository', use that instead of 'repo'
+    }
 }

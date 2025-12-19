@@ -35,4 +35,12 @@ public class DocumentController {
     public Document createDocument(@RequestBody Document document) {
         return service.createDocument(document);
     }
+
+    // ... other methods ...
+
+    @DeleteMapping("/documents/{id}")
+    public void deleteDocument(@PathVariable Long id) {
+        service.deleteDocument(id);
+    }
+}
 }
