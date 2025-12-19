@@ -43,4 +43,3 @@ public class DocumentController {
         service.deleteDocument(id);
     }
 }
-}

@@ -40,6 +40,7 @@ public class DocumentService {
     }
 
     public void deleteDocument(Long id) {
-        repository.deleteById(id); // Changed 'repo' to 'repository'
+        // Change 'repo' to 'repository'
+        repository.deleteById(id);
     }
 }
