@@ -9,8 +9,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // Apply to all URL paths
-                .allowedOriginPatterns("*") // Allow ALL websites (including Vercel)
+        registry.addMapping("/**") // Allow all URL paths
+                .allowedOriginPatterns("*") // Allow ALL domains (including Vercel)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Allow these actions
                 .allowedHeaders("*")
                 .allowCredentials(true);
