@@ -1,6 +1,6 @@
 # Stage 1: Build the application
 FROM maven:3.9.6-eclipse-temurin-21-jammy AS build
-COPY . .
+COPY src/main/java/com/ibuu/syncspace .
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run the application
