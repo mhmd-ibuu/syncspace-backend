@@ -30,4 +30,10 @@ public class DocumentController {
     public ResponseEntity<Document> getDocument(@PathVariable Long id) {
         return ResponseEntity.ok(service.getDocumentById(id));
     }
+
+    // Add this at the top of DocumentController
+    @GetMapping("/")
+    public String home() {
+        return "SyncSpace Backend is Running! 🚀";
+    }
 }
